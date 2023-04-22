@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,600;1,700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.urbanist {
+  font-family: urbanist;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+input {
+  font-size: 16px;
+}
