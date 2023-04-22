@@ -5,7 +5,7 @@ function Home() {
     <div className="bg-orange-200 px-4 py-20 md:px-24 md:py-20">
       <div>
         <h1 className="text-3xl urbanist font-bold text-brown mb-8">
-          Confruntă-te cu viața de adolescent{" "}
+          Confruntă-te cu viața de adolescent azi{" "}
         </h1>
       </div>
       <div className="md:w-8/12 md:absolute md:left-80 md:flex md:justify-end md:top-32">
