@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 function About() {
   return (
     <div className="bg-orange-200 px-4 py-20 md:px-24 md:py-20">

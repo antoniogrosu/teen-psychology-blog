@@ -10,10 +10,11 @@ function Home() {
       </div>
       <div className="md:w-8/12 md:absolute md:left-80 md:flex md:justify-end md:top-32">
         <Image
+          alt="psychology illustration"
           className="object-fill"
           src="/imagineHero.svg"
-          width={360}
-          height={360}
+          width={400}
+          height={400}
         ></Image>
       </div>
       <p className=" md:w-7/12 mt-8 urbanist font-normal text-brown text-md">
@@ -22,7 +23,7 @@ function Home() {
       </p>
       <div className="flex items-center justify-around md:block w-full md:w-auto">
         <Link href="/blog" className="w-1/2 md:w-auto">
-          <button className="w-11/12 px-6 py-2 md:w-auto mt-6 bg-brown rounded-lg border-2 border-brown text-gray-50 urbanist font-semibold md:text-sm">
+          <button className="w-11/12 px-6 py-2 md:w-auto mt-6 bg-brown rounded-lg border-2 border-brown text-gray-50 urbanist md:text-sm">
             Vezi Postarile
           </button>
         </Link>
