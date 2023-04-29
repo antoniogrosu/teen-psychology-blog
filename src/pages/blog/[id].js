@@ -70,7 +70,7 @@ export async function getStaticPaths() {
   const paths = blogs.map((blog) => ({ params: { id: blog.id } }));
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 export default Post;
