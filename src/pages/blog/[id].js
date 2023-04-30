@@ -137,7 +137,7 @@ function Post(props) {
           <div className="pt-1 bg-gradient-to-l from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
         </div>
       )}
-      {loadedPost.comments && (
+      {commentsArray && (
         <div className="w-full my-16">
           <div className="w-full flex items-center justify-between">
             <div className="pt-1 bg-gradient-to-r from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
@@ -151,7 +151,7 @@ function Post(props) {
           </div>
           {comments && (
             <div className="mt-8 flex flex-col w-full justify-center items-center">
-              {loadedPost.comments.map((comment) => (
+              {commentsArray.map((comment) => (
                 <div
                   key={generateId()}
                   className="w-full md:w-10/12 items-center justify-center flex flex-col my-6"
