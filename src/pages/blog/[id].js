@@ -128,7 +128,7 @@ function Post(props) {
           </div>
         </div>
       </div>
-      {commentsArray && (
+      {!commentsArray && (
         <div className="w-full flex items-center justify-between">
           <div className="pt-1 bg-gradient-to-r from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
           <h1 className="text-xl urbanist text-brown font-semibold">
