@@ -63,6 +63,7 @@ function postForm() {
           short: newData.short,
           image: newData.image,
           sections: newData.sections,
+          comments: newData.comments,
         },
       ],
     };
@@ -98,6 +99,7 @@ function postForm() {
       id: id.current.value,
       short: short.current.value,
       sections: sections,
+      comments: [],
     });
     setExternalForm(false);
   }

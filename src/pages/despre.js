@@ -63,32 +63,6 @@ function About() {
         Tot ce trebuie sa faci este sa vrei sa te cunosti, noi ne ocupam de
         restul!🤗
       </p>
-      <form>
-        <div className="flex flex-col justify-start">
-          <input
-            type="text"
-            className=" w-full bg-brown/20 md:w-5/12 mt-4 rounded-md h-12 indent-4 placeholder:text-brown placeholder:urbanist"
-            placeholder="Adresa Email"
-          ></input>
-          <input
-            type="password"
-            className="mt-4 w-full  bg-brown/20 md:w-5/12 rounded-md h-12 indent-4 placeholder:text-brown placeholder:urbanist"
-            placeholder="Parola"
-          ></input>
-        </div>
-        <div className="w-full mt-6 flex justify-start items-center">
-          <button className="px-6 py-2 font-semibold text-gray-50 bg-brown rounded-lg ">
-            Logare
-          </button>
-          <p className="ml-4 text-md text-brown urbanist">sau</p>
-          <Link
-            href="/cont"
-            className="text-brown underline urbanist underline-offset-4 font-semibold ml-4 text-lg"
-          >
-            Creare cont
-          </Link>
-        </div>
-      </form>
     </div>
   );
 }

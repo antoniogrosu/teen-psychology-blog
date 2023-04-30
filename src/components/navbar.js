@@ -38,10 +38,18 @@ function Navbar() {
               Logare
             </button>
           )}
+          {session && session.user.email == "aantoniogabriel23@gmail.com" && (
+            <Link
+              className="urbanist px-4 rounded-lg ml-4 bg-red-500 text-gray-50  py-1 font-semibold text-center"
+              href="/admin"
+            >
+              Admin
+            </Link>
+          )}
         </div>
       </nav>
       {menu && (
-        <div className="fixed top-0 bg-brown w-full top-0 h-2/3 rounded-b-2xl">
+        <div className="fixed  bg-brown w-full top-0 h-2/3 rounded-b-2xl">
           <nav className="w-full bg-brown pl-2 pr-4 flex items-center justify-between md:px-20">
             <Link href="/" className="p-4">
               <Image
@@ -93,7 +101,7 @@ function Navbar() {
             </Link>
             {session && session.user.email == "aantoniogabriel23@gmail.com" && (
               <Link
-                className="urbanist text-lg bg-red-500 text-orange-200  mt-4 py-4 w-full text-center border-orange-200/20"
+                className="urbanist text-lg bg-red-500 text-gray-50 font-semibold mt-4 py-4 w-full text-center border-orange-200/20"
                 href="/admin"
                 onClick={() => setMenu(false)}
               >
