@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 function Home() {
   return (
-    <div className="bg-orange-200 px-4 py-20 md:px-24 md:py-20">
+    <div className="mt-16 bg-orange-200 px-4 py-24 md:px-24 md:py-20">
       <div>
         <h1 className="text-3xl urbanist font-bold text-brown mb-8">
           Confruntă-te cu viața de adolescent azi{" "}
