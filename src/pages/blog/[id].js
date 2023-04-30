@@ -9,6 +9,7 @@ function Post(props) {
   }
   const { loadedPost, index } = props;
   const arrSections = loadedPost.sections;
+  const [commentsArray, setCommentsArray] = useState();
   const [comments, setComments] = useState(true);
   const sections = arrSections.map((section) => {
     return (
@@ -36,7 +37,13 @@ function Post(props) {
       setImage(session.user.image);
     }
   }, [session]);
-
+  useEffect(() => {
+    fetch(
+      `https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data/blogs/${index}.json`
+    )
+      .then((res) => res.json())
+      .then((data) => setCommentsArray(data.comments));
+  }, []);
   function sendComment() {
     const submitting = {
       ...loadedPost,
@@ -121,7 +128,7 @@ function Post(props) {
           </div>
         </div>
       </div>
-      {!loadedPost.comments && (
+      {commentsArray && (
         <div className="w-full flex items-center justify-between">
           <div className="pt-1 bg-gradient-to-r from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
           <h1 className="text-xl urbanist text-brown font-semibold">
