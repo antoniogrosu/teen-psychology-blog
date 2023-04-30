@@ -37,13 +37,6 @@ function Post(props) {
       setImage(session.user.image);
     }
   }, [session]);
-  useEffect(() => {
-    fetch(
-      `https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data/blogs/${index}.json`
-    )
-      .then((res) => res.json())
-      .then((data) => setCommentsArray(data.comments));
-  }, []);
   function sendComment() {
     const submitting = {
       ...loadedPost,
@@ -128,7 +121,7 @@ function Post(props) {
           </div>
         </div>
       </div>
-      {!commentsArray && (
+      {!loadedPost.comments && (
         <div className="w-full flex items-center justify-between">
           <div className="pt-1 bg-gradient-to-r from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
           <h1 className="text-xl urbanist text-brown font-semibold">
@@ -137,7 +130,7 @@ function Post(props) {
           <div className="pt-1 bg-gradient-to-l from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
         </div>
       )}
-      {commentsArray && (
+      {loadedPost.comments && (
         <div className="w-full my-16">
           <div className="w-full flex items-center justify-between">
             <div className="pt-1 bg-gradient-to-r from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
@@ -151,7 +144,7 @@ function Post(props) {
           </div>
           {comments && (
             <div className="mt-8 flex flex-col w-full justify-center items-center">
-              {commentsArray.map((comment) => (
+              {loadedPost.comments.map((comment) => (
                 <div
                   key={generateId()}
                   className="w-full md:w-10/12 items-center justify-center flex flex-col my-6"
@@ -185,7 +178,7 @@ function Post(props) {
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { id } = params;
   const res = await fetch(
     "https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data.json"
@@ -207,16 +200,4 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(
-    "https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data.json"
-  );
-  const data = await res.json();
-  const blogs = data.blogs;
-  const paths = blogs.map((blog) => ({ params: { id: blog.id } }));
-  return {
-    paths: paths,
-    fallback: "blocking",
-  };
-}
 export default Post;
