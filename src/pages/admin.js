@@ -2,15 +2,18 @@ import PostForm from "@/components/postForm";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import Chatbot from "@/components/chatbot";
 function Admin() {
   const { data: session } = useSession();
   const [post, setPost] = useState(true);
+
   const [dashboard, setDashboard] = useState(false);
   const [ai, setAi] = useState(false);
   if (session && session.user.email == "aantoniogabriel23@gmail.com") {
     return (
       <div className=" mt-16 bg-orange-200 px-4 py-20 md:px-24 md:py-20">
         {post && <PostForm />}
+        {ai && <Chatbot />}
       </div>
     );
   } else {

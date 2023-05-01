@@ -140,7 +140,7 @@ function postForm() {
     setList({ text: listTitle.current.value, bullets: bullets });
   }
   return (
-    <div className="bg-brown rounded-md p-8 rounde">
+    <div className="bg-brown rounded-md p-8">
       <h1 className="urbanist text-4xl text-gray-50 mb-8 font-semibold">
         Creeaza Postare
       </h1>
