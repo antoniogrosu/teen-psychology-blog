@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useSession, signIn } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 function Navbar() {
   const [menu, setMenu] = useState(false);
   const { data: session } = useSession();
@@ -30,6 +30,11 @@ function Navbar() {
           <Link href="/interviuri" className="ml-4">
             Interviuri
           </Link>
+          {session && (
+            <button className="ml-4" onClick={() => signOut()}>
+              Delogare
+            </button>
+          )}
           {!session && (
             <button
               onClick={() => signIn()}

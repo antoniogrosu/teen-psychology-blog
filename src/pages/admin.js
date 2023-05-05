@@ -2,7 +2,6 @@ import PostForm from "@/components/postForm";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Chatbot from "@/components/chatbot";
 function Admin() {
   const { data: session } = useSession();
   const [post, setPost] = useState(true);
