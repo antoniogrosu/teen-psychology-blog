@@ -5,6 +5,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 function Navbar() {
   const [menu, setMenu] = useState(false);
   const { data: session } = useSession();
+  console.log(session);
   return (
     <div className="fixed top-0 w-full z-10">
       <nav className=" w-full bg-brown px-2 flex items-center justify-between md:px-20">
@@ -31,16 +32,33 @@ function Navbar() {
             Interviuri
           </Link>
           {session && (
-            <button className="ml-4" onClick={() => signOut()}>
-              Delogare
+            <button
+              onClick={() => signOut()}
+              className="bg-gray-50 urbanist px-4 py-2 flex items-center justify-center text-gray-900 font-semibold ml-4 rounded-lg text-sm"
+            >
+              Deconectare
+              <Image
+                src="/google.svg"
+                className="ml-3 object-fit"
+                width={15}
+                height={15}
+                alt="google logo"
+              ></Image>
             </button>
           )}
           {!session && (
             <button
               onClick={() => signIn()}
-              className=" border-2 border-orange-200 px-3 py-1 text-orange-200 font-bold ml-4 rounded-lg"
+              className="bg-gray-50  urbanist px-4 py-2 flex items-center justify-center text-gray-900 font-semibold ml-4 rounded-lg"
             >
-              Logare
+              Continua cu
+              <Image
+                src="google.svg"
+                className="ml-2"
+                width={15}
+                height={15}
+                alt="google logo"
+              ></Image>
             </button>
           )}
           {session && session.user.email == "aantoniogabriel23@gmail.com" && (
@@ -54,28 +72,33 @@ function Navbar() {
         </div>
       </nav>
       {menu && (
-        <div className="fixed  bg-brown w-full top-0 h-2/3 rounded-b-2xl">
-          <nav className="w-full bg-brown pl-2 pr-4 flex items-center justify-between md:px-20">
-            <Link href="/" className="p-4">
-              <Image
-                alt="Logo"
-                src="/Logo.svg"
-                className="object-fill"
-                width={40}
-                height={40}
-              ></Image>
-            </Link>
-            <button
-              className=" bg-orange-200 px-2 py-1 
+        <div className="fixed right-0  bg-brown w-8/12 top-0 h-screen ">
+          <div className="w-full bg-brown pl-2 pr-4 flex  items-center justify-between md:px-20">
+            <nav className=" w-full px-2 flex items-center justify-between md:px-20">
+              <div href="/" className="p-4 opacity-0">
+                <Image
+                  alt="Logo"
+                  src="/Logo.svg"
+                  className="object-fill"
+                  width={40}
+                  height={40}
+                ></Image>
+              </div>
+              <button
+                className=" bg-orange-200 px-2 py-1 
           rounded-lg text-brown font-bold urbanist text-lg"
-              onClick={() => setMenu(false)}
-            >
-              &#x2715;
-            </button>
-          </nav>
-          <div className="w-full p-6 flex flex-col items-center justify-center fixed">
+                onClick={() => setMenu(false)}
+              >
+                &#x2715;
+              </button>
+            </nav>
+          </div>
+          <div className="mt-12 w-full flex flex-col  fixed">
+            <h1 className="pl-8 text-3xl font-semibold urbanist text-orange-200 mb-8 underline underline-offset-8">
+              Paginile noastre
+            </h1>
             <Link
-              className="urbanist text-lg text-orange-200 border-t-2 py-4 w-full text-center border-orange-200/20"
+              className="urbanist text-lg text-orange-200 border-t-2 py-4 px-8 w-full border-orange-200/20"
               href="/blog"
               onClick={() => {
                 setMenu(false);
@@ -84,21 +107,21 @@ function Navbar() {
               Blog
             </Link>
             <Link
-              className="urbanist text-lg text-orange-200 border-t-2 py-4 w-full text-center border-orange-200/20"
+              className="urbanist text-lg text-orange-200 border-t-2 py-4 px-8 w-full border-orange-200/20"
               href="/interviuri"
               onClick={() => setMenu(false)}
             >
               Interviuri
             </Link>
             <Link
-              className="urbanist text-lg text-orange-200 border-t-2 py-4 w-full text-center border-orange-200/20"
+              className="urbanist text-lg text-orange-200 border-t-2 py-4 px-8 w-full border-orange-200/20"
               href="/despre"
               onClick={() => setMenu(false)}
             >
               Despre Noi
             </Link>
             <Link
-              className="urbanist text-lg text-orange-200 border-y-2 py-4 w-full text-center border-orange-200/20"
+              className="urbanist text-lg text-orange-200 border-t-2 py-4 px-8 w-full border-orange-200/20"
               href="/contact"
               onClick={() => setMenu(false)}
             >
@@ -113,24 +136,44 @@ function Navbar() {
                 Admin
               </Link>
             )}
+            {session && (
+              <div className="mt-12 w-full pl-8">
+                <h1 className="text-3xl font-semibold urbanist text-orange-200 mb-8 underline underline-offset-8">
+                  Iesi din cont
+                </h1>
+                <button
+                  onClick={() => signOut()}
+                  className="px-6 flex items-center justify-center urbanist py-4 font-semibold text-brown bg-gray-50 rounded-lg text-xl"
+                >
+                  Deconectare
+                  <Image
+                    src="/google.svg"
+                    className="ml-3 object-fit"
+                    width={25}
+                    height={25}
+                    alt="google logo"
+                  ></Image>
+                </button>
+              </div>
+            )}
             {!session && (
-              <div className="mt-12 w-full">
+              <div className="mt-12 w-full pl-8">
                 <h1 className="text-3xl font-semibold urbanist text-orange-200 mb-8 underline underline-offset-8">
                   Intra in cont
                 </h1>
-
-                <div className="w-full mt-6 flex justify-start items-center">
-                  <button className="flex items-center justify-between urbanist px-6 py-2 font-semibold text-brown bg-gray-50 rounded-lg ">
-                    Continua cu
-                    <Image
-                      src="/google.svg"
-                      className="ml-2 object-fit"
-                      width={25}
-                      height={25}
-                      alt="google logo"
-                    ></Image>
-                  </button>
-                </div>
+                <button
+                  onClick={() => signIn()}
+                  className="px-4 flex items-center justify-center urbanist py-4 font-semibold text-brown bg-gray-50 rounded-lg text-xl"
+                >
+                  Continua cu
+                  <Image
+                    src="/google.svg"
+                    className="ml-6 object-fit"
+                    width={25}
+                    height={25}
+                    alt="google logo"
+                  ></Image>
+                </button>
               </div>
             )}
           </div>
