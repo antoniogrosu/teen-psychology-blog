@@ -1,5 +1,6 @@
 import Section from "@/components/section";
 import Image from "next/image";
+import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 function Post(props) {
@@ -73,12 +74,12 @@ function Post(props) {
       });
   }
   return (
-    <>
-      <head>
+    <div>
+      <Head>
         <title>{loadedPost.title}</title>
         <meta name="description" content={loadedPost.short} />
         <meta property="og:image" content={loadedPost.image} />
-      </head>
+      </Head>
       <div className="mt-16 bg-orange-200 px-4 py-20 md:px-24 md:py-20">
         <h1 className="text-3xl urbanist font-semibold text-brown text-center">
           {loadedPost.title}
@@ -181,7 +182,7 @@ function Post(props) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
