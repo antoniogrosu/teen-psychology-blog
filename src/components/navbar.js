@@ -5,7 +5,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 function Navbar() {
   const [menu, setMenu] = useState(false);
   const { data: session } = useSession();
-  console.log(session);
   return (
     <div className="fixed top-0 w-full z-10">
       <nav className=" w-full bg-brown px-2 flex items-center justify-between md:px-20">
