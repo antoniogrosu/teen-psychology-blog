@@ -3,6 +3,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
+
 function Post(props) {
   const { data: session } = useSession();
   function generateId() {
@@ -12,18 +13,6 @@ function Post(props) {
   const arrSections = loadedPost.sections;
   const [commentsArray, setCommentsArray] = useState();
   const [comments, setComments] = useState(true);
-  const sections = arrSections.map((section) => {
-    return (
-      <Section
-        key={generateId()}
-        subtitle={section.subtitle}
-        image={section.image}
-        list={section.list}
-        paragraphs={section.paragraphs}
-      />
-    );
-  });
-
   //data pentru comment
   const [user, setUser] = useState();
   const [image, setImage] = useState();
@@ -53,7 +42,7 @@ function Post(props) {
       ],
     };
     fetch(
-      `https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data/blogs/${index}.json`,
+      `https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data/interviews/${index}.json`,
       {
         method: "PUT",
         headers: {
@@ -91,7 +80,18 @@ function Post(props) {
           height={0}
           className="md:w-8/12 rounded-full mt-12 mx-auto"
         ></Image>
-        <div className="mt-16">{sections}</div>
+        <div className="flex flex-col gap-4 ">
+          {loadedPost.paragraphs.map((p) => {
+            return (
+              <p
+                key={generateId()}
+                className="my-4 urbanist text-md text-brown"
+              >
+                {p}
+              </p>
+            );
+          })}
+        </div>
         <div className="my-16 md:flex md:items-top md:justify-between md:flex-row flex-col w-full">
           {session && session.user && (
             <form className="w-full md:w-1/3" onSubmit={() => sendComment()}>
@@ -189,12 +189,12 @@ function Post(props) {
 export async function getServerSideProps({ params }) {
   const { id } = params;
   const res = await fetch(
-    "https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data/blogs.json"
+    "https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data/interviews.json"
   );
   const data = await res.json();
-  const blogs = data;
-  const post = blogs.find((item) => item.id === id);
-  const index = blogs.findIndex((item) => item.id == id);
+  const interviews = data;
+  const post = interviews.find((item) => item.id === id);
+  const index = interviews.findIndex((item) => item.id == id);
   if (!post) {
     return {
       notFound: true,

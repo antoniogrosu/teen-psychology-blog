@@ -23,21 +23,11 @@ function postForm() {
   //date noi
   const [newData, setNewData] = useState({});
 
-  //array-ul cu sectiuni
-  const [sections, setSections] = useState([]);
-
   //form-ul pt sectiuni
   const [sectionsForm, setSectionsForm] = useState(false);
 
-  //pentru partea de sectiuni
-  const subtitle = useRef();
-  const subImage = useRef();
-  const listTitle = useRef();
   const [p, setP] = useState("");
   const [paragraphs, setParagraphs] = useState([]);
-  const [bullet, setBullet] = useState("");
-  const [bullets, setBullets] = useState([]);
-  const [list, setList] = useState({});
 
   //functia de fetching din db
   async function getData() {
@@ -55,14 +45,14 @@ function postForm() {
   function sendData() {
     const submitting = {
       ...data,
-      blogs: [
-        ...data.blogs,
+      interviews: [
+        ...data.interviews,
         {
           id: newData.id,
           title: newData.title,
           short: newData.short,
           image: newData.image,
-          sections: newData.sections,
+          paragraphs: newData.paragraphs,
           comments: newData.comments,
         },
       ],
@@ -87,7 +77,7 @@ function postForm() {
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
-    router.push(`/blog/${newData.id}`);
+    router.push(`/interviuri/${newData.id}`);
   }
 
   //salveaza continut extern
@@ -98,14 +88,14 @@ function postForm() {
       image: image.current.value,
       id: id.current.value,
       short: short.current.value,
-      sections: sections,
+      paragraphs: paragraphs,
       comments: [],
     });
     setExternalForm(false);
   }
   //salveaza sectiuni
   function submitSeconds() {
-    setNewData({ ...newData, sections: sections });
+    setNewData({ ...newData, paragraphs: paragraphs });
     setSectionsSetter(false);
   }
 
@@ -115,34 +105,14 @@ function postForm() {
   }
   const [sectionsSetter, setSectionsSetter] = useState(true);
 
-  //salveaza sectiunea curenta
-  function saveCurrentSection() {
-    setSections([
-      ...sections,
-      {
-        subtitle: subtitle.current.value,
-        image: subImage.current.value,
-        paragraphs: paragraphs,
-        list: list,
-      },
-    ]);
-    setSectionsForm(false);
-  }
-
   //adauga paragraf in array
   function addParagraph() {
     setParagraphs([...paragraphs, p]);
   }
-
-  //adauga bullet in array
-  function addBullet() {
-    setBullets([...bullets, bullet]);
-    setList({ text: listTitle.current.value, bullets: bullets });
-  }
   return (
     <div className="bg-brown rounded-md p-8">
       <h1 className="urbanist text-2xl text-gray-50 mb-8 font-semibold">
-        Creeaza Postare
+        Creeaza Interviu
       </h1>
       <div className="flex md:items-center md:justify-between md:flex-row flex-col gap-8 md:gap-0">
         {externalForm && (
@@ -186,29 +156,17 @@ function postForm() {
           <div className="md:w-6/12 bg-orange-200/10 p-4 rounded-sm">
             <div className="flex items-center  justify-between">
               <h1 className="urbanist text-gray-50 mb-4 text-xl font-semibold">
-                Sectiuni
+                Paragrafe
               </h1>
               <button
                 onClick={toggleSectionForm}
                 className="border-2 border-orange-200/80 urbanist text-sm text-gray-50 px-4 py-2 rounded-lg"
               >
-                Adauga Sectiune
+                Adauga paragraf
               </button>
             </div>
             {sectionsForm && (
-              <form className="w-full mt-4" onSubmit={saveCurrentSection}>
-                <input
-                  type="text"
-                  ref={subtitle}
-                  placeholder="subtitlu"
-                  className="mb-4 text-gray-50 block indent-4 rounded-lg h-8 placeholder:urbanist urbanist bg-orange-200/30 placeholder:text-orange-200/80"
-                ></input>
-                <input
-                  type="text"
-                  ref={subImage}
-                  placeholder="imagine"
-                  className="mb-4 text-gray-50 12 block indent-4 rounded-lg h-8 placeholder:urbanist urbanist bg-orange-200/30 placeholder:text-orange-200/80"
-                ></input>
+              <form className="w-full mt-4">
                 <textarea
                   onChange={(e) => {
                     setP(e.target.value);
@@ -224,57 +182,26 @@ function postForm() {
                 >
                   + paragraf
                 </button>
-                <input
-                  type="text"
-                  ref={listTitle}
-                  placeholder="titlu lista"
-                  className="mb-4 text-gray-50 12 block indent-4 rounded-lg h-8 placeholder:urbanist urbanist bg-orange-200/30 placeholder:text-orange-200/80"
-                ></input>
-                <textarea
-                  onChange={(e) => {
-                    setBullet(e.target.value);
-                  }}
-                  value={bullet}
-                  className="w-full h-24 rounded-lg text-gray-50 p-4 bg-orange-200/30 urbanist placeholder:text-orange-200/80"
-                  placeholder="paragraf"
-                ></textarea>
-                <button
-                  type="button"
-                  onClick={addBullet}
-                  className="ml-8 block px-4 mt-2 urbanist font-semibold text-gray-50 py-1 rounded-md bg-orange-200/30 border-2 border-orange-200"
-                >
-                  + bullet
-                </button>
-                <button
-                  onClick={saveCurrentSection}
-                  type="button"
-                  className="px-4 py-2 bg-orange-200/60 mt-8 urbanist text-gray-50 rounded-sm"
-                >
-                  Salveaza Sectiunea
-                </button>
               </form>
             )}
-            {!sectionsForm && (
-              <button
-                type="button"
-                onClick={submitSeconds}
-                className="w-full font-semibold px-4 py-2 bg-orange-200/60 mt-8 urbanist text-gray-50 rounded-sm"
-              >
-                Salveaza Sectiunile ( {sections.length} total)
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={submitSeconds}
+              className="w-full font-semibold px-4 py-2 bg-orange-200/60 mt-8 urbanist text-gray-50 rounded-sm"
+            >
+              Salveaza Paragrafele ( {paragraphs.length} total)
+            </button>
           </div>
         )}
       </div>
-      {!externalForm && !sectionsForm && (
-        <button
-          onClick={sendData}
-          className="mt-8 flex items-center justify-around px-6 py-2 bg-gray-50 text-brown rounded-xl urbanist font-semibold"
-        >
-          <p className="mr-2">Posteaza</p>
-          <img src="/adminPost.svg"></img>
-        </button>
-      )}
+
+      <button
+        onClick={sendData}
+        className="mt-8 flex items-center justify-around px-6 py-2 bg-gray-50 text-brown rounded-xl urbanist font-semibold"
+      >
+        <p className="mr-2">Posteaza</p>
+        <img src="/adminPost.svg"></img>
+      </button>
     </div>
   );
 }

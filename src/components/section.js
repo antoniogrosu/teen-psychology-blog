@@ -14,9 +14,9 @@ function Section(props) {
         <Image
           alt="descriptive image"
           src={image}
-          width={400}
-          height={400}
-          className="w-full mb-8"
+          width={3840}
+          height={2160}
+          className=" w-full mb-8 rounded-lg"
         ></Image>
       )}
       {typeof list !== "undefined" && (

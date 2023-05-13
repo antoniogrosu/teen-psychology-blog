@@ -1,18 +1,71 @@
 import PostForm from "@/components/postForm";
+import InterviewForm from "@/components/interviewPost";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 function Admin() {
   const { data: session } = useSession();
-  const [post, setPost] = useState(true);
+  const [post, setPost] = useState(false);
 
   const [dashboard, setDashboard] = useState(false);
   const [ai, setAi] = useState(false);
   if (session && session.user.email == "aantoniogabriel23@gmail.com") {
     return (
       <div className=" mt-16 bg-orange-200 px-4 py-20 md:px-24 md:py-20">
-        {post && <PostForm />}
-        {ai && <Chatbot />}
+        <h1 className=" text-4xl urbanist font-bold text-brown">
+          Bine ai venit ,{" "}
+          <span className="underline underline-offset-4">Alexia</span> !
+        </h1>
+        <div className="my-8">
+          <p className=" urbanist font-normal text-brown text-md">
+            Pe aceasta pagina poti sa postezi blog-uri si interviuri , sa iti
+            monitorizezi performanta platformei tale si sa comunici cu unealta
+            cu inteligenta artificiala. Pentru fiecare unealta exista
+            insutrctiuni in josul paginii.
+            <br />{" "}
+            <span className="font-bold">
+              Pentru probleme tehnice ma poti contact pe numarul de telefon.
+            </span>
+          </p>
+        </div>
+        <button
+          onClick={() => {
+            setDashboard(!dashboard);
+            setPost(false);
+            setAi(false);
+          }}
+          className="text-md px-4 py-2 bg-brown/60 border-2 urbanist border-brown hover:bg-brown text-gray-50 font-semibold rounded-lg mr-4 mb-8"
+        >
+          Analiza Site
+        </button>
+        <button
+          onClick={() => {
+            setPost(!post);
+            setAi(false);
+            setDashboard(false);
+          }}
+          className="text-md px-4 py-2 bg-brown/60 border-2 urbanist border-brown hover:bg-brown text-gray-50 font-semibold rounded-lg mr-4 mb-8"
+        >
+          Posteaza
+        </button>
+        <button
+          onClick={() => {
+            setAi(!dashboard);
+            setPost(false);
+            setDashboard(false);
+            s;
+          }}
+          className="text-md px-4 py-2 bg-brown/60 border-2 urbanist border-brown hover:bg-brown text-gray-50 font-semibold rounded-lg mr-4 mb-8"
+        >
+          Unealta AI
+        </button>
+
+        {post && (
+          <div className="flex flex-col w-full gap-8">
+            <PostForm />
+            <InterviewForm />
+          </div>
+        )}
       </div>
     );
   } else {

@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
 import BlogCard from "@/components/blogPostCard";
+
 function Blog(props) {
   function generateId() {
     return Math.random().toString(36).substr(2, 9);
   }
-  const data = props.data.blogs;
+  const data = props.data;
   const content = data.map((item) => {
-    return (
-      <BlogCard
-        key={generateId()}
-        image={item.image}
-        short={item.short}
-        title={item.title}
-        id={item.id}
-      />
-    );
+    if (item != null) {
+      return (
+        <BlogCard
+          key={generateId()}
+          image={item.image}
+          title={item.title}
+          short={item.short}
+          id={item.id}
+        />
+      );
+    }
   });
   return (
     <div className="mt-16 bg-orange-200 px-4 py-20 md:px-24 md:py-20">
@@ -25,14 +28,14 @@ function Blog(props) {
     </div>
   );
 }
-
 export default Blog;
 
 export async function getStaticProps() {
   const res = await fetch(
-    "https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data.json"
+    "https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data/blogs.json"
   );
   const data = await res.json();
+  console.log(data);
 
   return {
     props: {
