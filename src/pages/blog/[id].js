@@ -74,11 +74,11 @@ function Post(props) {
       });
   }
   return (
-    <div>
+    <article>
       <Head>
         <title>{loadedPost.title}</title>
         <meta name="description" content={loadedPost.short} />
-        <meta property="og:image" content={loadedPost.image} />
+        <link rel="apple-touch-icon" href={loadedPost.image} />
       </Head>
       <div className="mt-16 bg-orange-200 px-4 py-20 md:px-24 md:py-20">
         <h1 className="text-3xl urbanist font-semibold text-brown text-center">
@@ -138,7 +138,7 @@ function Post(props) {
           </div>
         )}
         {loadedPost.comments && (
-          <div className="w-full my-16">
+          <section className="w-full my-16">
             <div className="w-full flex items-center justify-between">
               <div className="pt-1 bg-gradient-to-r from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
               <button
@@ -171,18 +171,18 @@ function Post(props) {
                 ))}
               </div>
             )}
-          </div>
+          </section>
         )}
-        <div className="md:hidden w-full">
+        <section className="md:hidden w-full">
           <h1 className="text-3xl urbanist font-bold text-brown mb-8">
             Poate ti-ar placea ?
           </h1>
           <div className="w-full  h-36 p-1 bg-red-200 rounded-lg flex items-center justify-center urbanist text-2xl font-semibold">
             Alta postare
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </article>
   );
 }
 
