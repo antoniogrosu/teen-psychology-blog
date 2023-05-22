@@ -6,7 +6,6 @@ import Link from "next/link";
 function Admin() {
   const { data: session } = useSession();
   const [post, setPost] = useState(false);
-
   const [dashboard, setDashboard] = useState(false);
   const [ai, setAi] = useState(false);
   if (session && session.user.email == "aantoniogabriel23@gmail.com") {
@@ -53,7 +52,6 @@ function Admin() {
             setAi(!dashboard);
             setPost(false);
             setDashboard(false);
-            s;
           }}
           className="text-md px-4 py-2 bg-brown/60 border-2 urbanist border-brown hover:bg-brown text-gray-50 font-semibold rounded-lg mr-4 mb-8"
         >

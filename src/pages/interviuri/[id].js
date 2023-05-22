@@ -1,7 +1,7 @@
 import Section from "@/components/section";
 import Image from "next/image";
 import Head from "next/head";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 
 function Post(props) {
@@ -17,6 +17,7 @@ function Post(props) {
   const [user, setUser] = useState();
   const [image, setImage] = useState();
   const submittingComment = useRef(null);
+
   const loadedComments = loadedPost.hasOwnProperty("comments")
     ? loadedPost.comments
     : "";
@@ -65,7 +66,7 @@ function Post(props) {
   return (
     <article>
       <Head>
-        <title>{loadedPost.title}</title>
+        <title>Teen Psychology | {loadedPost.title}</title>
         <meta name="description" content={loadedPost.short} />
         <link rel="apple-touch-icon" href={loadedPost.image} />
       </Head>
@@ -93,6 +94,26 @@ function Post(props) {
           })}
         </div>
         <div className="my-16 md:flex md:items-top md:justify-between md:flex-row flex-col w-full">
+          {!session && (
+            <div>
+              <h1 className="urbanist text-xl text-brown font-semibold">
+                Pentru a adauga un comentariu trebuie sa fii logat/a
+              </h1>
+              <button
+                onClick={() => signIn()}
+                className="bg-gray-50  urbanist px-4 py-2 flex items-center justify-center text-gray-900 font-semibold my-4  rounded-lg"
+              >
+                Continua cu
+                <Image
+                  src="/google.svg"
+                  className="ml-2"
+                  width={15}
+                  height={15}
+                  alt="google logo"
+                ></Image>
+              </button>
+            </div>
+          )}
           {session && session.user && (
             <form className="w-full md:w-1/3" onSubmit={() => sendComment()}>
               <h1 className="text-3xl urbanist font-bold text-brown mb-8">
@@ -129,7 +150,7 @@ function Post(props) {
           </div>
         </div>
         {!loadedPost.comments && (
-          <div className="w-full flex items-center justify-between">
+          <div className="w-full flex items-center justify-between my-8">
             <div className="pt-1 bg-gradient-to-r from-brown/0 to-brown/20 w-1/4 rounded-full"></div>
             <h1 className="text-xl urbanist text-brown font-semibold">
               0 Comentarii

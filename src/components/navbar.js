@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 import { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 function Navbar() {
@@ -7,6 +8,10 @@ function Navbar() {
   const { data: session } = useSession();
   return (
     <div className="fixed top-0 w-full z-10">
+      <Head>
+        <link rel="icon" href="/Logo.svg"></link>
+        <title>Teen Psychology</title>
+      </Head>
       <nav className=" w-full bg-brown px-2 flex items-center justify-between md:px-20">
         <Link href="/" className="p-4">
           <Image
@@ -52,7 +57,7 @@ function Navbar() {
             >
               Continua cu
               <Image
-                src="google.svg"
+                src="/google.svg"
                 className="ml-2"
                 width={15}
                 height={15}
@@ -128,7 +133,7 @@ function Navbar() {
             </Link>
             {session && session.user.email == "aantoniogabriel23@gmail.com" && (
               <Link
-                className="urbanist text-lg bg-red-500 text-gray-50 font-semibold mt-4 py-4 w-full text-center border-orange-200/20"
+                className="urbanist text-lg bg-red-500 text-gray-50 font-semibold py-4 w-full pl-8 border-orange-200/20"
                 href="/admin"
                 onClick={() => setMenu(false)}
               >
