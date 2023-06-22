@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { Image } from "next/image";
-import Section from "@/components/section";
+import Section from "src/components/section";
 
 function postForm() {
   //key prop

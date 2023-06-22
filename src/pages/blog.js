@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import BlogCard from "@/components/blogPostCard";
+import BlogCard from "src/components/blogPostCard";
 import Image from "next/image";
 function Blog(props) {
   function generateId() {
@@ -67,14 +67,14 @@ function Blog(props) {
       </h1>
       {post && (
         <div className="flex justify-between md:flex-row flex-col items-center gap-4 my-16 ">
-          <h1 className="md:hidden text-center text-brown text-md urbanist text-xl ">
-            Afla mai multe in doar{" "}
-            <span className="font-semibold">5 minute</span> de lectura
+          <h1 className="md:hidden text-center text-brown urbanist text-xl ">
+            Afla mai multe in doar 5 minute de lectura
           </h1>
-          <div className="w-full md:w-6/12 bg-brown/60  rounded-2xl ">
+          <div className="w-full md:w-5/12 bg-brown/60  rounded-2xl ">
             <div className="flex w-full flex-col justify-left items-top">
               <div className="w-full  ">
                 <Image
+                  priority
                   src={post.image}
                   alt={post.alt}
                   width={post.width}

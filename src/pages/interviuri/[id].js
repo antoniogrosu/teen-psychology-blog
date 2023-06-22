@@ -1,4 +1,4 @@
-import Section from "@/components/section";
+import Section from "src/components/section";
 import Image from "next/image";
 import Head from "next/head";
 import { useSession, signIn } from "next-auth/react";

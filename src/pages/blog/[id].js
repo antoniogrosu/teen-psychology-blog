@@ -1,4 +1,4 @@
-import Section from "@/components/section";
+import Section from "src/components/section";
 import Image from "next/image";
 import Head from "next/head";
 import { useSession, signIn } from "next-auth/react";
@@ -121,7 +121,7 @@ function Post(props) {
 
               <div className="flex items-center justify-start">
                 <div className="md:h-12 md:w-12 w-8 h-8">
-                  <img src={session.user.image} className="rounded-full"></img>
+                  <Image href={session.user.image} className="rounded-full" />
                 </div>
                 <p className="urbanist text-brown text-lg font-semibold ml-4">
                   {session.user.name}

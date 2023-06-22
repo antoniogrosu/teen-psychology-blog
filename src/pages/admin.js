@@ -1,8 +1,9 @@
-import PostForm from "@/components/postForm";
-import InterviewForm from "@/components/interviewPost";
+import PostForm from "src/components/postForm";
+import InterviewForm from "src/components/interviewPost";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import ChatBot from "src/components/Chatbot.tsx";
 function Admin() {
   const { data: session } = useSession();
   const [post, setPost] = useState(false);
@@ -27,16 +28,7 @@ function Admin() {
             </span>
           </p>
         </div>
-        <button
-          onClick={() => {
-            setDashboard(!dashboard);
-            setPost(false);
-            setAi(false);
-          }}
-          className="text-md px-4 py-2 bg-brown/60 border-2 urbanist border-brown hover:bg-brown text-gray-50 font-semibold rounded-lg mr-4 mb-8"
-        >
-          Analiza Site
-        </button>
+
         <button
           onClick={() => {
             setPost(!post);
@@ -62,6 +54,11 @@ function Admin() {
           <div className="flex flex-col w-full gap-8">
             <PostForm />
             <InterviewForm />
+          </div>
+        )}
+        {ai && (
+          <div>
+            <ChatBot />
           </div>
         )}
       </div>

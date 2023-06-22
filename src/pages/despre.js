@@ -1,6 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 function About() {
+  const { data: session } = useSession();
+
   return (
     <div className="mt-16 bg-orange-200 px-4 py-20 md:px-24 md:py-20">
       <h1 className="text-3xl urbanist font-bold text-brown mb-2">
@@ -63,6 +67,55 @@ function About() {
         Tot ce trebuie sa faci este sa vrei sa te cunosti, noi ne ocupam de
         restul!🤗
       </p>
+      <div>
+        {" "}
+        <div className="md:inline-block">
+          <button className="bg-brown px-6 mt-8 flex items-center rounded-lg py-2 font-semibold text-md urbanist text-orange-200">
+            <Image
+              className="inline-block mr-4"
+              src="/Logo.svg"
+              alt="logo"
+              width={32}
+              height={32}
+            />
+            <Link href="/blog">Viziteaza Blog-ul</Link>{" "}
+          </button>
+        </div>
+        {session && (
+          <div className=" md:inline-block">
+            <button
+              onClick={() => signOut()}
+              className="bg-gray-50 md:mt-0 mt-4 urbanist px-4 py-2 flex items-center justify-center text-gray-900 font-semibold md:ml-4 rounded-lg"
+            >
+              <Image
+                src="/google.svg"
+                className="mr-4 object-fit"
+                width={32}
+                height={32}
+                alt="google logo"
+              ></Image>
+              Deconectare
+            </button>
+          </div>
+        )}
+        {!session && (
+          <div className="md:inline-block">
+            <button
+              onClick={() => signIn()}
+              className="bg-gray-50 md:mt-0 mt-4 urbanist px-4 py-2 flex items-center justify-center text-gray-900 font-semibold md:ml-4 rounded-lg"
+            >
+              <Image
+                src="/google.svg"
+                className="mr-4"
+                width={32}
+                height={32}
+                alt="google logo"
+              ></Image>
+              Conectare
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

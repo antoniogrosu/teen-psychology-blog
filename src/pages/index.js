@@ -1,39 +1,46 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useSession, signIn, signOut } from "next-auth/react";
+
 function Home() {
+  const { data: session } = useSession();
+
   return (
     <div className="mt-16 bg-orange-200 px-4 py-24 md:px-24 md:py-20">
-      <div>
-        <h1 className="text-3xl urbanist font-bold text-brown mb-8">
-          Confruntă-te cu viața de adolescent azi{" "}
-        </h1>
+      <div className="md:h-64 md:pt-16 h-screen">
+        <div>
+          <h1 className="text-3xl urbanist font-bold text-brown mb-8">
+            Confruntă-te cu viața de adolescent azi{" "}
+          </h1>
+        </div>
+        <div className="md:w-8/12 md:absolute md:left-80 md:flex md:justify-end md:top-32">
+          <Image
+            priority
+            alt="psychology illustration"
+            className="object-fill"
+            src="/imagineHero.svg"
+            width={400}
+            height={400}
+          ></Image>
+        </div>
+        <p className=" md:w-7/12 mt-8 urbanist font-normal text-brown text-md">
+          Daca ai probleme legate de Anxietate, Depresie si lucruri
+          asemenatoare, esti in locul potrivit. Hai sa aflam solutia impreuna !
+        </p>
+        <div className="flex items-center justify-around md:block w-full md:w-auto">
+          <Link href="/blog" className="w-1/2 md:w-auto">
+            <button className="w-11/12 px-6 py-2 md:w-auto mt-6 bg-brown rounded-lg border-2 border-brown text-gray-50 urbanist md:text-sm">
+              Vezi Postarile
+            </button>
+          </Link>
+          <Link href="/despre" className="w-1/2 md:w-auto">
+            <button className="px-6 w-11/12 ml-4 md:w-auto py-2 mt-6 bg-transparent border-2 border-brown rounded-lg text-brown urbanist font-semibold md:text-sm">
+              Afla mai multe
+            </button>
+          </Link>
+        </div>
       </div>
-      <div className="md:w-8/12 md:absolute md:left-80 md:flex md:justify-end md:top-32">
-        <Image
-          alt="psychology illustration"
-          className="object-fill"
-          src="/imagineHero.svg"
-          width={400}
-          height={400}
-        ></Image>
-      </div>
-      <p className=" md:w-7/12 mt-8 urbanist font-normal text-brown text-md">
-        Daca ai probleme legate de Anxietate, Depresie si lucruri asemenatoare,
-        esti in locul potrivit. Hai sa aflam solutia impreuna !
-      </p>
-      <div className="flex items-center justify-around md:block w-full md:w-auto">
-        <Link href="/blog" className="w-1/2 md:w-auto">
-          <button className="w-11/12 px-6 py-2 md:w-auto mt-6 bg-brown rounded-lg border-2 border-brown text-gray-50 urbanist md:text-sm">
-            Vezi Postarile
-          </button>
-        </Link>
-        <Link href="/despre" className="w-1/2 md:w-auto">
-          <button className="px-6 w-11/12 ml-4 md:w-auto py-2 mt-6 bg-transparent border-2 border-brown rounded-lg text-brown urbanist font-semibold md:text-sm">
-            Afla mai multe
-          </button>
-        </Link>
-      </div>
-      <div className="mt-28">
+      <div className="md:my-36">
         <h1 className="text-3xl urbanist font-bold text-brown mb-8">
           Primul pas este cunoasterea
         </h1>
@@ -64,6 +71,8 @@ function Home() {
           noastra pentru tine pare totusi cam simpla, iar tu o complici fara
           sa-ti dai seama. Asa te-ai obisnuit!
         </p>
+      </div>
+      <div className="mt-36">
         <p className="md:text-left text-center urbanist font-bold text-2xl mt-16">
           Dar, daca ai putea sa . . .
         </p>
@@ -99,6 +108,55 @@ function Home() {
           care totul este despre noi! <br /> Noi, cei care ne dorim mai mult
           decat altii!
         </p>
+        <div>
+          {" "}
+          <div className="md:inline-block">
+            <button className="bg-brown px-6 mt-8 flex items-center rounded-lg py-2 font-semibold text-md urbanist text-orange-200">
+              <Image
+                className="inline-block mr-4"
+                src="/Logo.svg"
+                alt="logo"
+                width={32}
+                height={32}
+              />
+              <Link href="/blog">Viziteaza Blog-ul</Link>{" "}
+            </button>
+          </div>
+          {session && (
+            <div className=" md:inline-block">
+              <button
+                onClick={() => signOut()}
+                className="bg-gray-50 md:mt-0 mt-4 urbanist px-4 py-2 flex items-center justify-center text-gray-900 font-semibold md:ml-4 rounded-lg"
+              >
+                <Image
+                  src="/google.svg"
+                  className="mr-4 object-fit"
+                  width={32}
+                  height={32}
+                  alt="google logo"
+                ></Image>
+                Deconectare
+              </button>
+            </div>
+          )}
+          {!session && (
+            <div className="md:inline-block">
+              <button
+                onClick={() => signIn()}
+                className="bg-gray-50 md:mt-0 mt-4 urbanist px-4 py-2 flex items-center justify-center text-gray-900 font-semibold md:ml-4 rounded-lg"
+              >
+                <Image
+                  src="/google.svg"
+                  className="mr-4"
+                  width={32}
+                  height={32}
+                  alt="google logo"
+                ></Image>
+                Conectare
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

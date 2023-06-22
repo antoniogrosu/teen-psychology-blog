@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import InterviewCard from "@/components/interviewPostCard";
+import InterviewCard from "src/components/interviewPostCard";
 
 function Interviuri(props) {
   function generateId() {
