@@ -56,6 +56,7 @@ function Blog(props) {
           title={item.title}
           short={item.short}
           id={item.id}
+          comments={item.comments}
         />
       );
     }

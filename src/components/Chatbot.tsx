@@ -112,7 +112,9 @@ export default function ChatBot() {
           <ChatMessage key={msg.key} text={msg.text} from={msg.from} />
         ))}
         {messages.length === 0 && (
-          <p className="text-center text-gray-400">I am at your service</p>
+          <p className="text-center text-gray-400">
+            sunt aici pentru a te ajuta
+          </p>
         )}
       </div>
     </main>

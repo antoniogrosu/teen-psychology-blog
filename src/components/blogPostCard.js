@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 function BlogCard(props) {
+  const arr = props.comments;
   return (
     <Link href={`/blog/${props.id}`}>
       <div className="bg-brown rounded-md">
@@ -22,7 +23,7 @@ function BlogCard(props) {
           <p className="urbanist text-xs mt-2 text-gray-50">{props.short}</p>
           <div className="border-t-2 border-gray-50/20  mt-4">
             <p className="text-xs text-gray-50/20 mt-2 urbanist">
-              0 comentarii
+              {arr ? arr.length : 0} comentarii
             </p>
           </div>
         </div>

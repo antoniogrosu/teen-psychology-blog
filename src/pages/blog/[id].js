@@ -9,6 +9,7 @@ function Post(props) {
     return Math.random().toString(36).substr(2, 9);
   }
   const { loadedPost, index } = props;
+
   const arrSections = loadedPost.sections;
   const [commentsArray, setCommentsArray] = useState();
   const [comments, setComments] = useState(true);
@@ -211,10 +212,11 @@ export async function getServerSideProps({ params }) {
   const res = await fetch(
     "https://blog-d9dcf-default-rtdb.europe-west1.firebasedatabase.app/data/blogs.json"
   );
+
   const data = await res.json();
   const blogs = data;
   const post = blogs.find((item) => item.id === id);
-  const index = blogs.findIndex((item) => item.id == id);
+  const index = blogs.findIndex((item) => item);
   if (!post) {
     return {
       notFound: true,
