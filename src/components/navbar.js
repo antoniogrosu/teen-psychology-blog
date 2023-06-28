@@ -65,7 +65,7 @@ function Navbar() {
               ></Image>
             </button>
           )}
-          {session && session.user.email == "aantoniogabriel23@gmail.com" && (
+          {session && session.user.email == "alexia.badea@gmail.com" && (
             <Link
               className="urbanist px-4 rounded-lg ml-4 bg-red-500 text-gray-50  py-1 font-semibold text-center"
               href="/admin"
@@ -125,7 +125,7 @@ function Navbar() {
               Despre Noi
             </Link>
 
-            {session && session.user.email == "aantoniogabriel23@gmail.com" && (
+            {session && session.user.email == "alexia.badea@gmail.com" && (
               <Link
                 className="urbanist text-lg bg-red-500 text-gray-50 font-semibold py-4 w-full pl-8 border-orange-200/20"
                 href="/admin"
