@@ -8,7 +8,7 @@ function Admin() {
   const [post, setPost] = useState(false);
   const [dashboard, setDashboard] = useState(false);
   const [ai, setAi] = useState(false);
-  if (session && session.user.email == "aantoniogabriel23@gmail.com") {
+  if (session && session.user.email == "alexia.badea@gmail.com") {
     return (
       <div className=" mt-16 bg-orange-200 px-4 py-20 md:px-24 md:py-20">
         <h1 className=" text-4xl urbanist font-bold text-brown">
