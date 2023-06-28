@@ -124,13 +124,7 @@ function Navbar() {
             >
               Despre Noi
             </Link>
-            <Link
-              className="urbanist text-lg text-orange-200 border-t-2 py-4 px-8 w-full border-orange-200/20"
-              href="/contact"
-              onClick={() => setMenu(false)}
-            >
-              Contact
-            </Link>
+
             {session && session.user.email == "aantoniogabriel23@gmail.com" && (
               <Link
                 className="urbanist text-lg bg-red-500 text-gray-50 font-semibold py-4 w-full pl-8 border-orange-200/20"

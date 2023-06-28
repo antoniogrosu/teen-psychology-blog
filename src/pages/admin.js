@@ -38,15 +38,22 @@ function Admin() {
         >
           Posteaza
         </button>
-        <Link
-          className="text-md px-4 py-2 bg-brown/60 border-2 urbanist border-brown hover:bg-brown text-gray-50 font-semibold rounded-lg mr-4 mb-8"
-          href={
-            "https://fnbasfndaicweklmvniwejbvawvnirw-vjkwebnvianvjwnei-secret.vercel.app/"
-          }
-          target="blank"
-        >
-          Unealta AI
-        </Link>
+        <button className="text-md px-4 py-2 bg-brown/60 border-2 urbanist border-brown hover:bg-brown text-gray-50 font-semibold rounded-lg mr-4 mb-8">
+          <Link
+            href={"https://ai-teen-psychology-made-by-antonio.vercel.app/"}
+            target="blank"
+          >
+            Unealta AI
+          </Link>
+        </button>
+        <button className="text-md px-4 py-2 bg-brown/60 border-2 urbanist border-brown hover:bg-brown text-gray-50 font-semibold rounded-lg mr-4 mb-8">
+          <Link
+            href={"https://vercel.com/antoniogrosu/blog-41q6/analytics"}
+            target="blank"
+          >
+            Analiza Website
+          </Link>
+        </button>
 
         {post && (
           <div className="flex flex-col w-full gap-8">
